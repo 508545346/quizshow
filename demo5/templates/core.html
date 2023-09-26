@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+
+
+{% block title%} {% endblock%}
+
+
+{% block head%}
+
+{% endblock%}
+
+
+{% block body%}
+<div class="row" style="margin-top: 20px;">
+    <div class="col"></div>
+    <div class="col-8" style="text-align:center">
+        <div class="question-content">用户名：{{current_user.username}}</div>
+        <div class="question-content">用户邮箱：{{current_user.email}}</div>
+        <div class="question-content">注册时间：{{current_user.join_time}}</div>
+
+    </div>
+    <div class="col"></div>
+</div>
+{% endblock%}
+
+
+
+
+
+

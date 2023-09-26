@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%} {% endblock%}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='uploads/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+    <script src="{{ url_for('static', filename='jquery/jquery.3.6.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    {%block head%}
+
+    {% endblock%}
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">练习1111</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user1.public_question')}}">发布问答</a>
+                </li>
+                <li class="nav-item ml-2">
+                    <form class="form-inline my-2 my-lg-0" method="get" action="{{ url_for('user1.search')}}">
+                        <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search"
+                               name="q">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                    </form>
+                </li>
+            </ul>
+
+            {% if current_user.username %}
+
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-expanded="false">
+                    {{ current_user.username}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item nav-link " href=" {{ url_for('user1.core')}}">个人中心</a>
+                    <a class="dropdown-item nav-link" href="{{ url_for('user1.change_password')}}">修改密码</a>
+                </div>
+            </div>
+            <div>
+                <a class="nav-link" href="{{ url_for('user1.logout')}}">退出登录</a>
+            </div>
+            {% else %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user1.login') }}">登录</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user1.register')}}">注册</a>
+                </li>
+            </ul>
+            {% endif %}
+
+        </div>
+    </nav>
+</div>
+<div class="container">{%block body%}{%endblock%}</div>
+</body>
+</html>

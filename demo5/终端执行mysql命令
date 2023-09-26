@@ -1,0 +1,6 @@
+初始化项目：flask db init
+映射表单：flask db migrate
+在数据库创建表单：flask db upgrade
+
+映射表单如果出现提示：Error: Target database is not up to date. （目标数据库不是最新的）
+去migration 下面的 versions 文件里面找到最新的ID 给到 alembic_version 表  更新  version_num=ID
